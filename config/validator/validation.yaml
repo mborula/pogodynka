@@ -1,0 +1,91 @@
+
+App\Entity\Forecast:
+    properties:
+        date:
+            -   NotBlank:
+                    groups: [ create, edit ]
+            -   GreaterThanOrEqual:
+                    value: today
+                    message: 'Date can not be in past.'
+                    groups: [ create ]
+
+        wind:
+            -   NotBlank:
+                    groups: [ create, edit ]
+            -   Range:
+                    min: 0
+                    max: 400
+                    notInRangeMessage: 'Wind must be between 0 and 400 km/h.'
+                    groups: [ create, edit ]
+
+        precipitation:
+            -   NotBlank:
+                    groups: [ create, edit ]
+            -   Range:
+                    min: 0
+                    max: 2000
+                    notInRangeMessage: 'Precipitation must be between 0 and 2000 mm.'
+                    groups: [ create, edit ]
+
+        cloudiness:
+            -   NotBlank:
+                    groups: [ create, edit ]
+            -   Range:
+                    min: 0
+                    max: 100
+                    notInRangeMessage: 'Cloudiness must be between 0 and 100%.'
+                    groups: [ create, edit ]
+
+        moisture:
+            -   NotBlank:
+                    groups: [ create, edit ]
+            -   Range:
+                    min: 0
+                    max: 100
+                    notInRangeMessage: 'Moisture must be between 0 and 100%.'
+                    groups: [ create, edit ]
+
+        temperature:
+            -   NotBlank:
+                    groups: [ create, edit ]
+            -   Range:
+                    min: -90
+                    max: 60
+                    notInRangeMessage: 'Temperature must be between -90 and 60 celsius.'
+                    groups: [ create, edit ]
+
+        location:
+            -   NotNull:
+                    message: 'Please select a location.'
+                    groups: [ create, edit ]
+
+App\Entity\Location:
+    properties:
+        city:
+            -   NotBlank:
+                    message: 'City cannot be empty.'
+                    groups: [ create, edit ]
+
+        country:
+            -   NotNull:
+                    message: 'Please select a country.'
+                    groups: [ create, edit ]
+
+        latitude:
+            -   NotBlank:
+                    groups: [ create, edit ]
+            -   Range:
+                    min: -90
+                    max: 90
+                    notInRangeMessage: 'Latitude must be between -90 and 90.'
+                    groups: [ create, edit ]
+
+        longtitude:
+            -   NotBlank:
+                    groups: [ create, edit ]
+            -   Range:
+                    min: -180
+                    max: 180
+                    notInRangeMessage: 'Longitude must be between -180 and 180.'
+                    groups: [ create, edit ]
+

@@ -1,0 +1,48 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Forecast index{% endblock %}
+
+{% block body %}
+    <h1>Forecast index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="d-none d-md-table-cell">Id</th>
+            <th>City</th>
+            <th class="d-none d-md-table-cell">Date</th>
+            <th class="d-none d-md-table-cell">Wind</th>
+            <th class="d-none d-md-table-cell">Precipitation</th>
+            <th class="d-none d-md-table-cell">Cloudiness</th>
+            <th class="d-none d-md-table-cell">Moisture</th>
+            <th>Temperature</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for forecast in forecasts %}
+            <tr>
+                <td class="d-none d-md-table-cell">{{ forecast.id }}</td>
+                <td>{{ forecast.location.city }}</td>
+                <td class="d-none d-md-table-cell">{{ forecast.date ? forecast.date|date('Y-m-d') : '' }}</td>
+                <td class="d-none d-md-table-cell">{{ forecast.wind }}</td>
+                <td class="d-none d-md-table-cell">{{ forecast.precipitation }}</td>
+                <td class="d-none d-md-table-cell">{{ forecast.cloudiness }}</td>
+                <td class="d-none d-md-table-cell">{{ forecast.moisture }}</td>
+                <td>{{ forecast.temperature }} °C</td>
+                <td>
+                    <a href="{{ path('app_forecast_show', {'id': forecast.id}) }}">show</a>
+                    <a href="{{ path('app_forecast_edit', {'id': forecast.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_forecast_new') }}">Create new</a>
+{% endblock %}
