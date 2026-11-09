@@ -32,8 +32,12 @@
                 <td class="d-none d-md-table-cell">{{ forecast.moisture }}</td>
                 <td>{{ forecast.temperature }} °C</td>
                 <td>
+                    {%  if is_granted('ROLE_FORECAST_SHOW') %}
                     <a href="{{ path('app_forecast_show', {'id': forecast.id}) }}">show</a>
+                    {% endif %}
+                    {%  if is_granted('ROLE_FORECAST_EDIT') %}
                     <a href="{{ path('app_forecast_edit', {'id': forecast.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -43,6 +47,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    {%  if is_granted('ROLE_FORECAST_NEW') %}
     <a href="{{ path('app_forecast_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}
