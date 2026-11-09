@@ -39,9 +39,16 @@ security:
         ROLE_ADMIN:
             - ROLE_USER
             - ROLE_LOCATION_EDIT
-        ROLE_USER:
+            - ROLE_LOCATION_DELETE
+            - ROLE_LOCATION_NEW
+            - ROLE_FORECAST_EDIT
+            - ROLE_FORECAST_DELETE
+            - ROLE_FORECAST_NEW
+        ROLE_USER: #user haslo123
             - ROLE_LOCATION_INDEX
             - ROLE_LOCATION_SHOW
+            - ROLE_FORECAST_INDEX
+            - ROLE_FORECAST_SHOW
 
 when@test:
     security:
